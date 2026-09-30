@@ -40,10 +40,11 @@ Run the site locally from the workspace root with `npm run dev`.
 
 ## Deploy to GitHub Pages
 
-The GitHub Actions workflow deploys the site automatically when changes are pushed to `main`.
+Publish the production build to the `gh-pages` branch:
 
 1. In the GitHub repository, open **Settings > Pages**.
-2. Set **Build and deployment > Source** to **GitHub Actions**.
-3. Push your changes to `main`, then follow the deployment in the repository's **Actions** tab.
+2. Set **Build and deployment > Source** to **Deploy from a branch**.
+3. Select the `gh-pages` branch and the `/(root)` folder, then save.
+4. Run `npm run deploy` from the project folder whenever you want to publish an update.
 
 The published site will be available at <https://onlydogood.github.io/my-portfolio/>.
