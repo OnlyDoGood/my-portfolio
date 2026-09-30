@@ -202,7 +202,7 @@ function App() {
               <a className="primary-button" href="#work">
                 View projects
               </a>
-              <a className="secondary-button" href="/desmond-odogwu-cv.txt" download>
+              <a className="secondary-button" href={`${import.meta.env.BASE_URL}desmond-odogwu-cv.txt`} download>
                 Download CV
               </a>
               <a className="secondary-button" href="#about">
