@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const skills = [
   'HTML',
@@ -86,8 +86,6 @@ const timeline = [
 ];
 
 function App() {
-  const [formStatus, setFormStatus] = useState({ type: '', message: '' });
-
   useEffect(() => {
     const reveals = document.querySelectorAll('.reveal');
 
@@ -119,48 +117,6 @@ function App() {
 
   const featuredProject = projects[0];
   const secondaryProjects = projects.slice(1);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const name = formData.get('name')?.toString().trim() || '';
-    const email = formData.get('email')?.toString().trim() || '';
-    const message = formData.get('message')?.toString().trim() || '';
-
-    setFormStatus({ type: 'sending', message: 'Sending your message...' });
-
-    try {
-      const response = await fetch('https://formsubmit.co/ajax/desmondodogwu306@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-          _subject: `Portfolio enquiry from ${name}`,
-          _template: 'table'
-        })
-      });
-      const result = await response.json();
-
-      if (!response.ok || result.success === false || result.success === 'false') {
-        throw new Error(result.message || 'Your message could not be sent. Please email me directly.');
-      }
-
-      form.reset();
-      setFormStatus({ type: 'success', message: 'Thanks, your message has been sent.' });
-    } catch (error) {
-      setFormStatus({
-        type: 'error',
-        message: error.message || 'Something went wrong. Please email me directly.'
-      });
-    }
-  };
 
   return (
     <div className="page-shell">
@@ -434,7 +390,8 @@ function App() {
               </div>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form" action="https://formspree.io/f/mjyklpdk" method="POST">
+              <input type="hidden" name="_subject" value="New portfolio enquiry" />
               <div className="field-row">
                 <label>
                   Name
@@ -451,12 +408,9 @@ function App() {
                 <textarea name="message" placeholder="Tell me about your project" required />
               </label>
 
-              <button type="submit" className="primary-button submit-button" disabled={formStatus.type === 'sending'}>
-                {formStatus.type === 'sending' ? 'Sending...' : 'Send message'}
+              <button type="submit" className="primary-button submit-button">
+                Send message
               </button>
-              <p className={`form-status ${formStatus.type}`} role="status" aria-live="polite">
-                {formStatus.message}
-              </p>
             </form>
           </div>
         </section>

@@ -20,13 +20,13 @@ In `src/App.jsx`, set `socialProfiles.linkedin` and `socialProfiles.github` to y
 
 ## Receive contact messages
 
-The contact form uses [FormSubmit](https://formsubmit.co/) to deliver messages to `desmondodogwu306@gmail.com`; this static portfolio does not need its own server.
+The contact form submits directly to [Formspree](https://formspree.io/) using the endpoint configured in the form action in `src/App.jsx`. This static portfolio does not need its own server.
 
-1. Deploy the portfolio, or run it locally and submit a test message from the contact form.
-2. FormSubmit sends a one-time activation email to `desmondodogwu306@gmail.com`. Open it and confirm the activation link. Until this is done, form submissions will not be delivered.
-3. Submit another test message and check the inbox and spam folder.
+1. Confirm the Formspree form is configured to deliver to your intended email address.
+2. Deploy the portfolio, then submit a test message and follow any verification or activation prompt from Formspree.
+3. Check the destination inbox and spam folder for the test message.
 
-The email address and endpoint are in the `fetch` call inside `handleSubmit` in `src/App.jsx`. If you change the receiving address, update the endpoint and activate that address through FormSubmit as well. Form messages pass through FormSubmit, so review its privacy terms before publishing the form. The visible email link remains available as a fallback.
+The visible email link remains available as a fallback.
 
 ## Scripts
 
